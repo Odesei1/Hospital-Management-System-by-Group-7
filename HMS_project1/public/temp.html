@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="public/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="brand">
+          <div class="logo">MC</div>
+          <div>
+            <div style="font-weight:700">MedClinic Management System</div>
+            <div style="font-size:12px;color:#7b8794">Comprehensive healthcare management platform</div>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="dashboard.php" data-link="dashboard.php">Dashboard</a>
+          <a href="public/invoice/read.php" data-link="public/invoice/read.php">Appointments</a>
+          <a href="public/customer/read.php" data-link="public/customer/read.php">Patients</a>
+        </nav>
+      </div>
+
+      <div class="title">Dashboard Overview</div>
+      <div class="subtitle">Welcome to the MedClinic Admin Dashboard</div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="label">Total Patients <span class="icon-pill"><i class="fa-solid fa-user"></i></span></div>
+          <div class="value">2</div>
+        </div>
+        <div class="card">
+          <div class="label">Active Doctors <span class="icon-pill" style="background:#e6fffa"><i class="fa-solid fa-user-md" style="color:#059669"></i></span></div>
+          <div class="value">5</div>
+        </div>
+        <div class="card">
+          <div class="label">Today's Appointments <span class="icon-pill"><i class="fa-regular fa-calendar"></i></span></div>
+          <div class="value">0</div>
+        </div>
+
+        <div class="card">
+          <div class="label">Total Revenue <span class="icon-pill" style="background:#ecfdf5"><i class="fa-solid fa-dollar-sign" style="color:#10b981"></i></span></div>
+          <div class="value">$200</div>
+        </div>
+        <div class="card">
+          <div class="label">Confirmed Appointments <span class="icon-pill"><i class="fa-solid fa-heartbeat"></i></span></div>
+          <div class="value">1</div>
+        </div>
+        <div class="card">
+          <div class="label">Pending Appointments <span class="icon-pill"><i class="fa-solid fa-clock"></i></span></div>
+          <div class="value">1</div>
+        </div>
+
+        <div class="card wide" style="padding:6px 18px">
+          <div class="recent-row" style="padding:14px">
+            <div class="list">
+              <h3>Recent Appointments</h3>
+              <div class="item">
+                <div>
+                  <div class="name">John Smith</div>
+                  <div class="meta">Dr. Sarah Johnson - Cardiology</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="meta">2025-10-22</div>
+                  <div class="meta">09:00</div>
+                </div>
+              </div>
+              <div class="item">
+                <div>
+                  <div class="name">Emily Brown</div>
+                  <div class="meta">Dr. James Wilson - Orthopedics</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="meta">2025-10-20</div>
+                  <div class="meta">14:00</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="list">
+              <h3>Recent Payments</h3>
+              <div class="item">
+                <div>
+                  <div class="name">John Smith</div>
+                  <div class="meta">card</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-weight:700">$200</div>
+                  <div class="meta">paid</div>
+                </div>
+              </div>
+              <div class="item">
+                <div>
+                  <div class="name">Emily Brown</div>
+                  <div class="meta">insurance</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-weight:700">$180</div>
+                  <div class="meta">paid</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+  <script>
+    // Small script to keep active nav state and make nav feel interactive
+    (function(){
+      const links = document.querySelectorAll('.nav a');
+
+      function setActiveByPath(){
+        // Get the path relative to the project root
+        const path = window.location.pathname.replace(/\\/g,'/');
+        // path may be like /sales/crud_project/temp.html or /sales/crud_project/dashboard.php
+        const tail = path.split('/').pop();
+        links.forEach(a=>{
+          // Use the anchor's data-link to compare (keeps it predictable)
+          const linkPath = a.getAttribute('data-link').split('/').pop();
+          if(linkPath === tail){
+            a.classList.add('active');
+          } else {
+            a.classList.remove('active');
+          }
+        });
+      }
+
+      links.forEach(a=>{
+        a.addEventListener('click', ()=>{
+          links.forEach(x=>x.classList.remove('active'));
+          a.classList.add('active');
+        });
+      });
+
+      // On load set the active link using current URL
+      setActiveByPath();
+    })();
+  </script>
+</html>
